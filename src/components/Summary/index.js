@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import Grid from '@material-ui/core/Grid';
+import React, { useEffect, useState } from "react";
+import Grid from "@material-ui/core/Grid";
 
-import { getMapDataByCountryId } from '../apis';
-import LineChart from '../Charts/LineChart';
-import HighMaps from '../Charts/HighMaps';
+import { getMapDataByCountryId } from "../apis";
+import LineChart from "../Charts/LineChart";
+import HighMaps from "../Charts/HighMaps";
 
 export default function Summary({ countryId, report }) {
   const [mapData, setMapData] = useState({});
@@ -19,7 +19,7 @@ export default function Summary({ countryId, report }) {
   }, [countryId]);
 
   return (
-    <div style={{ height: '500px', marginTop: 10 }}>
+    <div style={{ height: "500px", marginTop: 10 }}>
       <Grid container spacing={3}>
         <Grid item sm={8} xs={12}>
           <LineChart data={report} />

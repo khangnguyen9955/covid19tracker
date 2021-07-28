@@ -7,9 +7,6 @@ import Highlight from "./components/Highlight";
 import { Container, Typography } from "@material-ui/core";
 import "@fontsource/roboto";
 import moment from "moment";
-import "moment/locale/vi";
-
-moment.locale("vi");
 
 const App = () => {
   const [countries, setCountries] = React.useState([]);
@@ -35,7 +32,6 @@ const App = () => {
         (country) => country.ISO2 === selectedCountryId.toUpperCase()
       );
       getReportByCountry(selectedCountry.Slug).then((res) => {
-        console.log("getReportByCountry", { res });
         // remove last item = current date
         res.data.pop();
         setReport(res.data);
@@ -48,17 +44,17 @@ const App = () => {
       const latestData = report[report.length - 1];
       return [
         {
-          title: "Số ca nhiễm",
+          title: "Infected",
           count: latestData.Confirmed,
           type: "confirmed",
         },
         {
-          title: "Khỏi",
+          title: "Recovered",
           count: latestData.Recovered,
           type: "recovered",
         },
         {
-          title: "Tử vong",
+          title: "Deaths",
           count: latestData.Deaths,
           type: "death",
         },

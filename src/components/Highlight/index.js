@@ -1,6 +1,6 @@
-import React from 'react';
-import { Grid } from '@material-ui/core';
-import HighlightCard from './HighlightCard';
+import React from "react";
+import { Grid } from "@material-ui/core";
+import HighlightCard from "./HighlightCard";
 
 export default function Highlight({ summary }) {
   return (

@@ -12,7 +12,7 @@ const generateOptions = (data) => {
       height: 500,
     },
     title: {
-      text: "Infected",
+      text: "Total Cases",
     },
     xAxis: {
       categories: categories,
@@ -45,7 +45,7 @@ const generateOptions = (data) => {
     },
     series: [
       {
-        name: "Infected",
+        name: "Total cases",
         data: data.map((item) => item.Confirmed),
       },
     ],
