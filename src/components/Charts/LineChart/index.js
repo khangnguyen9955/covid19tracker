@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
-import moment from 'moment';
-import { Button, ButtonGroup } from '@material-ui/core';
+import React, { useEffect, useState } from "react";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import moment from "moment";
+import { Button, ButtonGroup } from "@material-ui/core";
 
 const generateOptions = (data) => {
-  const categories = data.map((item) => moment(item.Date).format('DD/MM/YYYY'));
+  const categories = data.map((item) => moment(item.Date).format("DD/MM/YYYY"));
 
   return {
     chart: {
       height: 500,
     },
     title: {
-      text: 'Tổng ca nhiễm',
+      text: "Infected",
     },
     xAxis: {
       categories: categories,
       crosshair: true,
     },
-    colors: ['#F3585B'],
+    colors: ["#F3585B"],
     yAxis: {
       min: 0,
       title: {
         text: null,
       },
       labels: {
-        align: 'right',
+        align: "right",
       },
     },
     tooltip: {
@@ -33,7 +33,7 @@ const generateOptions = (data) => {
       pointFormat:
         '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
         '<td style="padding:0"><b>{point.y} ca</b></td></tr>',
-      footerFormat: '</table>',
+      footerFormat: "</table>",
       shared: true,
       useHTML: true,
     },
@@ -45,7 +45,7 @@ const generateOptions = (data) => {
     },
     series: [
       {
-        name: 'Tổng Ca nhiễm',
+        name: "Infected",
         data: data.map((item) => item.Confirmed),
       },
     ],
@@ -54,19 +54,18 @@ const generateOptions = (data) => {
 
 export default function LineChart({ data }) {
   const [options, setOptions] = useState({});
-  const [reportType, setReportType] = useState('all');
-  console.log({ data });
+  const [reportType, setReportType] = useState("all");
 
   useEffect(() => {
     let customData = [];
     switch (reportType) {
-      case 'all':
+      case "all":
         customData = data;
         break;
-      case '30':
+      case "30":
         customData = data.slice(Math.max(data.length - 30, 1));
         break;
-      case '7':
+      case "7":
         customData = data.slice(Math.max(data.length - 7, 1));
         break;
 
@@ -81,30 +80,30 @@ export default function LineChart({ data }) {
   return (
     <>
       <ButtonGroup
-        size='small'
-        aria-label='small outlined button group'
+        size="small"
+        aria-label="small outlined button group"
         style={{
-          display: 'flex',
-          justifyContent: 'flex-end',
+          display: "flex",
+          justifyContent: "flex-end",
         }}
       >
         <Button
-          color={reportType === 'all' ? 'secondary' : ''}
-          onClick={() => setReportType('all')}
+          color={reportType === "all" ? "secondary" : ""}
+          onClick={() => setReportType("all")}
         >
-          Tất cả
+          All
         </Button>
         <Button
-          color={reportType === '30' ? 'secondary' : ''}
-          onClick={() => setReportType('30')}
+          color={reportType === "30" ? "secondary" : ""}
+          onClick={() => setReportType("30")}
         >
-          30 ngày
+          30 days
         </Button>
         <Button
-          color={reportType === '7' ? 'secondary' : ''}
-          onClick={() => setReportType('7')}
+          color={reportType === "7" ? "secondary" : ""}
+          onClick={() => setReportType("7")}
         >
-          7 ngày
+          7 days
         </Button>
       </ButtonGroup>
       <HighchartsReact highcharts={Highcharts} options={options} />
